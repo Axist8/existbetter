@@ -1,0 +1,82 @@
+.todo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: red 1px solid;
+    width: 100%;
+}
+
+.todo-label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.todo-item-container {
+    margin: 8px;
+}
+
+.todo-item-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.todo-item-container label {
+    position: relative;
+}
+
+.todo-item-container span::before,
+.todo-item-container span::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.todo-item-container span.checkmark:hover {
+    cursor: pointer;
+}
+
+.todo-item-container span.checkmark::before {
+    width: 27px;
+    height: 27px;
+    background-color: #ffa55c;
+    left: -35px;
+    box-sizing: border-box;
+    border: 3px solid transparent;
+    transition: border-color .2s;
+    border-radius: 8px;
+}
+
+.todo-item-container span.checkmark:hover::before {
+    border: 3px solid #9e4676;
+}
+
+.todo-item-container span.checkmark::after {
+    content: 'X';
+    font-family: 'Zen Dots', sans-serif;
+    left: -31px;
+    font-size: 21px;
+    top: -4px;
+    color: transparent;
+    transition: color .2s;
+}
+
+input[type='checkbox']:checked + label span.checkmark::after {
+    color: #9A070E;
+}
+
+input[type='checkbox']:checked + label span.checkmark {
+    text-decoration: line-through;
+}

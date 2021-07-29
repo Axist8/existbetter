@@ -22,12 +22,14 @@
 }
 
 .todo-content {
+    padding: 10px;
     position: absolute;
-    width: 78%;
-    height: 62%;
-    margin-top: 10px;
+    width: 80%;
+    height: 64%;
+    margin-top: 9px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
 }

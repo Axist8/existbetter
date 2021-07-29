@@ -26,7 +26,7 @@ body {
   border-radius: 12px;
   font-size: .8rem;
   background: #4e042d;
-  color: #d1a682;
+  color: #ffe56f;
   transform: translateY(-6px);
 }
 
@@ -99,5 +99,6 @@ input {
 }
 
 label {
-  color: rgb(255, 228, 187);
+  color: rgb(240, 224, 255);
+  font-size: 18px;
 }
