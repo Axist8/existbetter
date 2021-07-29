@@ -1,0 +1,30 @@
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 5px 0;
+}
+
+#logo {
+    width: 68px;
+    margin: 0 8px 0 5px;
+}
+
+h1 {
+    font-size: 1.7em;
+    font-weight: 400;
+    font-family: 'Zen Dots', sans-serif;
+    margin-top: 28px;
+}
+
+#exist {
+    background: linear-gradient(to right, #9A070E, #9e4676);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#better {
+    background: linear-gradient(to right, #a1316f, #f98b2f);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

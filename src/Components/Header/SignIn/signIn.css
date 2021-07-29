@@ -1,0 +1,42 @@
+.sign-in-modal-container {
+    background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+    left: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.sign-in-modal {
+    height: 205px;
+	width: 200px;
+	background-color: black;
+	text-align: center;
+	padding: 15px 15px 20px 15px;
+	position: relative;
+	border-radius: 15px;
+    border: slateblue 1px solid;
+}
+
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0 20px 0;
+    box-sizing: border-box;
+}
+
+.sign-in {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 17px 14px;
+}
+
+.sign-in-form label {
+    margin-bottom: 7px;
+}

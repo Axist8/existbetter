@@ -1,0 +1,44 @@
+nav::before,
+nav::after {
+    content: '';
+    height: 1px;
+    background-color: white;
+    display: block;
+}
+
+nav::before {
+    margin: 0 20px -8px 20px;
+    background: linear-gradient(to right, #f98b2f, #9e4676);
+}
+
+nav::after {
+    margin: -7px 20px 3px 20px;
+    background: linear-gradient(to right, #a1316f, #9A070E);
+}
+
+nav {
+    background: linear-gradient(to right, #ff5a63, #ffa053);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 100%;
+}
+
+#menu {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h3 {
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Quantico', sans-serif;
+    margin: 12px;
+    text-transform: uppercase;
+
+}
+
+.dot {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 11px;
+    margin: 14px -11px 12px;
+}
