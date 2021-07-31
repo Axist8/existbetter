@@ -4,6 +4,7 @@ import './addTodo.css'
 function AddTodo() {
     function openNewTodo() {
         document.getElementById('addTodoModalContainer').style.display = 'flex';
+        document.body.addEventListener('click', )
     }
 
     function closeNewTodo() {
@@ -24,7 +25,10 @@ function AddTodo() {
                     </form>
                 </div>
             </div>
-            <button className='pushable' onClick={openNewTodo}><span className='add-todo-btn front'>Add a To Do</span></button>
+            <div className='todo-btns'>
+                <button className='pushable' onClick={openNewTodo}><span className='todo-btn front'>Add a To Do</span></button>
+                <button className='pushable'><span className='todo-btn front'>Clear todos</span></button>
+            </div>
         </div>
     )
 }

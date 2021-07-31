@@ -5,12 +5,12 @@ import './todo.css'
 
 function Todo() {
     return (
-        <div className='todo-list'>
-            <div className='glass-plate'></div>
-            <div className='todo-content'>
-                <TodoItem todoName='' />
-                <AddTodo />
+        <div className='todo-container'>
+            <div className='todo-list'>
+                <TodoItem todo='learn react what happens if this is really long' todoID='todo1' />
+                <TodoItem todo='learn react' todoID='todo1' />
             </div>
+            <AddTodo />
         </div>
     )
 }
