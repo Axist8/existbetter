@@ -4,7 +4,6 @@ import './addTodo.css'
 function AddTodo() {
     function openNewTodo() {
         document.getElementById('addTodoModalContainer').style.display = 'flex';
-        document.body.addEventListener('click', )
     }
 
     function closeNewTodo() {
@@ -32,4 +31,5 @@ function AddTodo() {
         </div>
     )
 }
+
 export default AddTodo

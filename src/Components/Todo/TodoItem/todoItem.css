@@ -1,5 +1,10 @@
+hr {
+    width: 92%;
+    margin: 12px 40px;
+    max-width: 150px;
+}
 
-
-.todo-item {
-    margin-bottom: 20px;
+.todo-item input {
+    margin: 0 10px 0 0;
+    background-color: rosybrown;
 }

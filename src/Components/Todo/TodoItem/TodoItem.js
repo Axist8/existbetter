@@ -6,6 +6,7 @@ function TodoItem(props) {
         <div className='todo-item'>
             <input id={props.todoID} name={props.todoID} type='checkbox' />
             <label htmlFor={props.todoID}><span className='checkmark'>{props.todo}</span></label>
+            <hr />
         </div>
     )
 }
