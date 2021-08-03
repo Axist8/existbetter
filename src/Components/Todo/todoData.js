@@ -1,19 +1,23 @@
 const todoData = [
     {
-        todoID: 1,
-        todo: "My first todo that is really really long like why this long bro"
+        id: 1,
+        todo: "My first todo that is really really long like why this long bro",
+        completed: false
     },
     {
-        todoID: 2,
-        todo: "My second todo"
+        id: 2,
+        todo: "My second todo",
+        completed: false
     },
     {
-        todoID: 3,
-        todo: "My third todo"
+        id: 3,
+        todo: "My third todo",
+        completed: false
     },
     {
-        todoID: 4,
-        todo: "My fourth todo"
+        id: 4,
+        todo: "My fourth todo",
+        completed: false
     },
 ]
 

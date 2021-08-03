@@ -4,17 +4,44 @@ import AddTodo from './AddTodo/AddTodo'
 import './todo.css'
 import todoData from './todoData'
 
-function Todo() {
-    const allTodos = todoData.map(todo => <TodoItem todo={todo.todo} todoID={todo.todoID} />)
+class Todo extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            todos: todoData
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(id) {
+        this.setState(prev => {
+            const updatedTodos = prev.todos.map(todo => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        completed: !todo.completed
+                    }
+                }
+                return todo
+            })
+            console.log(updatedTodos)
+            return {
+                todos: updatedTodos
+            }
+        })
+    }
 
-    return (
-        <div className='todo-container'>
-            <div className='todo-list'>
-                {allTodos}
+    render() {
+        const allTodos = this.state.todos.map(item => <TodoItem key={item.id} item={item} handleChange={this.handleChange} />)
+
+        return (
+            <div className='todo-container'>
+                <div className='todo-list'>
+                    {allTodos}
+                </div>
+                <AddTodo />
             </div>
-            <AddTodo />
-        </div>
-    )
+        )
+    }
 }
 
 export default Todo

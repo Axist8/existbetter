@@ -4,8 +4,14 @@ import './todoItem.css'
 function TodoItem(props) {
     return (
         <div className='todo-item'>
-            <input id={props.todoID} name={props.todoID} type='checkbox' />
-            <label htmlFor={props.todoID}><span className='checkmark'>{props.todo}</span></label>
+            <input
+                id={props.item.id}
+                name={props.item.id}
+                type='checkbox'
+                checked={props.item.completed}
+                onChange={() => props.handleChange(props.item.id)}
+            />
+            <label htmlFor={props.item.id}><span className='checkmark'>{props.item.todo}</span></label>
             <hr />
         </div>
     )
