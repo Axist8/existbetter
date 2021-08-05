@@ -21,13 +21,13 @@ function SignIn() {
                         <label htmlFor='password'>Password:</label>
                         <input type='text' name='password' required /><br />
                         <div className='buttons'>
-                            <button type='submit' className='confirm-btn btn'>Sign In</button>
-                            <button type='button' className='cancel-btn btn' onClick={closeSignIn}>Cancel</button>
+                            <button type='submit' className='confirm-btn btn noSelect'>Sign In</button>
+                            <button type='button' className='cancel-btn btn noSelect' onClick={closeSignIn}>Cancel</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <button className='pushable sign-in' onClick={openSignIn}><span className='front'>Sign In</span></button>
+            <button className='pushable sign-in noSelect' onClick={openSignIn}><span className='front'>Sign In</span></button>
         </div>
     )
 }
