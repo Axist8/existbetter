@@ -1,7 +1,6 @@
 import React from 'react'
 import RoutineItem from './RoutineItem/RoutineItem'
 import AddRoutine from './AddRoutine/AddRoutine'
-import './routines.css'
 import routineData from './routineData'
 
 class Routines extends React.Component {
@@ -35,7 +34,7 @@ class Routines extends React.Component {
 
         return (
             <div className='action-container'>
-                <div className='routine-list'>
+                <div className='action-list'>
                     {allRoutines}
                 </div>
                 <AddRoutine />

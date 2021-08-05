@@ -1,9 +1,8 @@
 import React from 'react'
-import './routineItem.css'
 
 function RoutineItem(props) {
     return (
-        <div>
+        <div className='check-item'>
             <input 
                 id={props.item.id}
                 name={props.item.id}
@@ -12,7 +11,6 @@ function RoutineItem(props) {
                 onChange={() => props.handleChange(props.item.id)}
             />
             <label htmlFor={props.item.id}>{props.item.userInput}</label>
-            <hr />
         </div>
     )
 }

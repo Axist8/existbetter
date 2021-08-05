@@ -22,7 +22,7 @@
 .action-container {
     width: 85%;
     height: 89%;
-    padding: 1.5rem;
+    padding: 1.1rem .9rem;
     background: black;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #9A070E, #9e4676, #f98a2f93);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4e080b63, #77335a48, #b6662457); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -35,3 +35,6 @@
     border: 1px thistle solid;
 }
 
+.action-list {
+    width: 100%;
+}

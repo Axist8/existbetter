@@ -13,7 +13,6 @@ function CheckItem(props) {
                 onChange={() => props.handleChange(props.item.id)}
             />
             <label htmlFor={props.item.id}><span className='checkmark'>{props.item.userInput}</span></label>
-            <hr />
         </div>
     )
 }

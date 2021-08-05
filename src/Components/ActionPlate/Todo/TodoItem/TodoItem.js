@@ -4,7 +4,7 @@ import './todoItem.css'
 function TodoItem(props) {
     
     return (
-        <div className='todo-item'>
+        <div className='check-item'>
             <input
                 id={props.item.id}
                 name={props.item.id}

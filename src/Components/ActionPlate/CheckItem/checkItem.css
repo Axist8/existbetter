@@ -1,14 +1,12 @@
-hr {
-    width: 92%;
-    margin: 12px 40px;
-    max-width: 150px;
-}
-
 .check-item input {
     margin: 0 10px 0 0;
 }
 
-input:checked + label {
-    text-decoration: line-through;
-    color: rgb(196, 196, 196);
-  }
+.check-item {
+    box-shadow: rgb(253, 197, 255) 1px 1px 7px;
+    background-color:rgba(0, 0, 0, 0.5);
+    padding: 5px 8px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
