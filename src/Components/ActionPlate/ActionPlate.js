@@ -12,15 +12,25 @@ class ActionPlate extends React.Component {
     constructor() {
         super()
         this.state = {
-            currentPanel: 'Todo'
+            currentPanel: 'Routines'
         }
         this.handleClick = this.handleClick.bind(this)
     }
 
     handleClick(panel) {
+        
+        document.getElementById('Routines').classList.remove('neon')
+        document.getElementById('Behaviors').classList.remove('neon')
+        document.getElementById('Todo').classList.remove('neon')
+        document.getElementById('Goals').classList.remove('neon')
+        document.getElementById('WishList').classList.remove('neon')
+        
         this.setState({
             currentPanel: panel
         })
+ 
+        
+        document.getElementById(panel).classList.add('neon')
     }
     
     render() {
