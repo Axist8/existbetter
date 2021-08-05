@@ -1,7 +1,7 @@
 const todoData = [
     {
         id: 1,
-        todo: "My first todo that is really really long like why this long bro",
+        todo: "My first todo",
         completed: false
     },
     {

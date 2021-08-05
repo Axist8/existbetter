@@ -1,13 +1,13 @@
 import React from 'react'
 import './App.css'
-import Todo from './Components/Todo/Todo'
 import Header from './Components/Header/Header'
+import ActionPlate from './Components/ActionPlate/ActionPlate';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Header />
-      <Todo />
+      <ActionPlate />
     </div>
   );
 }

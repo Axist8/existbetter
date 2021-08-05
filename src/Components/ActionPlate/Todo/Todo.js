@@ -12,6 +12,7 @@ class Todo extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
     }
+    
     handleChange(id) {
         this.setState(prev => {
             const updatedTodos = prev.todos.map(todo => {
@@ -34,7 +35,7 @@ class Todo extends React.Component {
         const allTodos = this.state.todos.map(item => <TodoItem key={item.id} item={item} handleChange={this.handleChange} />)
 
         return (
-            <div className='todo-container'>
+            <div className='action-container'>
                 <div className='todo-list'>
                     {allTodos}
                 </div>
