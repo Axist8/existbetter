@@ -24,7 +24,6 @@ class Todo extends React.Component {
                 }
                 return todo
             })
-            console.log(updatedTodos)
             return {
                 todos: updatedTodos
             }

@@ -15,7 +15,18 @@ class Routines extends React.Component {
     
     handleChange(id) {
         this.setState(prev => {
-
+            const updatedRoutines = prev.routines.map(routine => {
+                if (routine.id === id) {
+                    return {
+                        ...routine,
+                        completed: !routine.completed
+                    }
+                }
+                return routine
+            })
+            return {
+                routines: updatedRoutines
+            }
         })
     }
 
