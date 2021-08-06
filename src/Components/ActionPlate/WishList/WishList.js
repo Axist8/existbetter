@@ -1,7 +1,6 @@
 import React from 'react'
 import CheckItem from '../CheckItem/CheckItem'
 import AddWish from './AddWish/AddWish'
-import './wishList.css'
 import wishListData from './wishListData'
 
 class WishList extends React.Component {
@@ -15,7 +14,16 @@ class WishList extends React.Component {
     
     handleChange(id) {
         this.setState(prev => {
-
+            const updatedWishList = prev.wishList.map(wish => {
+                if (wish.id === id) {
+                    return {
+                        ...wish,
+                        completed: !wish.completed
+                    }
+                }
+                return wish
+            })
+            return updatedWishList
         })
     }
 

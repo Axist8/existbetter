@@ -1,5 +1,4 @@
 import React from 'react'
-import './todoItem.css'
 
 function TodoItem(props) {
     
@@ -13,7 +12,6 @@ function TodoItem(props) {
                 onChange={() => props.handleChange(props.item.id)}
             />
             <label htmlFor={props.item.id}><span className='checkmark'>{props.item.todo}</span></label>
-            <hr />
         </div>
     )
 }

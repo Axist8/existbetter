@@ -2,8 +2,14 @@ import React from 'react'
 
 function AddTodo() {
     return (
-        <div className='add-todo-container'>
-
+        <div className='add-item'>
+            <input
+                type='text'
+                placeholder='Add a new todo'
+                name='addTodo'
+                id='addTodo'
+                className='user-input-text-box'
+            />
         </div>
     )
 }

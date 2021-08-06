@@ -2,7 +2,7 @@ import React from 'react'
 
 function AddRoutine() {
     return (
-        <div>
+        <div className='add-item'>
             <input
                 type='text'
                 placeholder='Add a new routine'

@@ -1,7 +1,6 @@
 import React from 'react'
 import TodoItem from './TodoItem/TodoItem'
 import AddTodo from './AddTodo/AddTodo'
-import './todo.css'
 import todoData from './todoData'
 
 class Todo extends React.Component {

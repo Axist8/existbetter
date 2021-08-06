@@ -10,7 +10,7 @@ function Nav(props) {
                 <p className='dot'>•</p>
                 <h3 onClick={() => props.handleClick('Behaviors')} id='Behaviors' className='noSelect'>Behaviors</h3>
                 <p className='dot'>•</p>
-                <h3 onClick={() => props.handleClick('Todo')} id='Todo' className='noSelect'>To Dos</h3>
+                <h3 onClick={() => props.handleClick('Todo')} id='Todo' className='noSelect'>Todos</h3>
                 <p className='dot'>•</p>
                 <h3 onClick={() => props.handleClick('Goals')} id='Goals' className='noSelect'>Goals</h3>
                 <p className='dot'>•</p>

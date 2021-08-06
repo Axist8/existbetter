@@ -85,17 +85,13 @@ body {
 
 label {
   color: rgb(240, 224, 255);
-  font-size: 18px;
+  font-size: 13px;
   font-family: 'Quantico', sans-serif;
-}
-
-.check-item input {
-  margin: 0 10px 0 0;
 }
 
 input:checked + label {
   text-decoration: line-through;
-  color: rgb(196, 196, 196);
+  color: rgb(182, 182, 182);
 }
 
 .user-input-text-box {
@@ -111,5 +107,5 @@ input:checked + label {
 }
 
 ::placeholder {
-  color: rgb(211, 211, 211);
+  color: #e0b694;
 }

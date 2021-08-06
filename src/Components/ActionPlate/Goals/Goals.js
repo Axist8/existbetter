@@ -1,7 +1,6 @@
 import React from 'react'
 import AddGoal from './AddGoal/AddGoal'
 import CheckItem from '../CheckItem/CheckItem'
-import './goals.css'
 import goalsData from './goalsData'
 
 class Goals extends React.Component {
@@ -15,7 +14,18 @@ class Goals extends React.Component {
     
     handleChange(id) {
         this.setState(prev => {
-
+            const updatedGoals = prev.goals.map(goal => {
+                if (goal.id === id) {
+                    return {
+                        ...goal,
+                        completed: !goal.completed
+                    }
+                }
+                return goal
+            })
+            return {
+                goals: updatedGoals
+            }
         })
     }
 
@@ -24,7 +34,7 @@ class Goals extends React.Component {
 
         return (
             <div className='action-container'>
-                <div className='goals-list'>
+                <div className='action-list'>
                     {allGoals}
                 </div>
                 <AddGoal />
