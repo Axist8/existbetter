@@ -48,3 +48,64 @@ h3 {
     padding: 0 2px;
     box-sizing: border-box;
 }
+
+@media only screen and (min-height: 666px) {
+    h3 {
+        font-size: 12px;
+    }
+
+    .dot {
+        font-size: 12px;
+        margin: 14px -11px 12px;
+    }
+}
+
+@media only screen and (min-height: 730px) {
+    h3 {
+        font-size: 13px;
+    }
+
+    .dot {
+        font-size: 14px;
+        margin: 15px -11px 11px;
+    }
+}
+
+@media only screen and (min-height: 820px) {
+    h3 {
+        font-size: 14px;
+    }
+
+    .dot {
+        font-size: 15px;
+        margin: 15px -11px 11px;
+    }
+}
+
+@media only screen and (min-height: 1000px) {
+    h3 {
+        font-size: 18px;
+    }
+
+    .dot {
+        font-size: 18px;
+        margin: 18px -11px 12px;
+    }
+}
+
+@media only screen and (min-height: 1300px) {
+    h3 {
+        font-size: 23px;
+    }
+
+    .dot {
+        font-size: 20px;
+        margin: 18px -11px 12px;
+    }
+}
+
+@media only screen and (max-width: 313px) {
+    h3 {
+        font-size: 10px;
+    }
+}

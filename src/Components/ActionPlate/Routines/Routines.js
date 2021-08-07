@@ -1,5 +1,5 @@
 import React from 'react'
-import RoutineItem from './RoutineItem/RoutineItem'
+import ActionItem from '../ActionItem/ActionItem'
 import AddRoutine from './AddRoutine/AddRoutine'
 import routineData from './routineData'
 
@@ -30,10 +30,10 @@ class Routines extends React.Component {
     }
 
     render() {
-        const allRoutines = this.state.routines.map(item => <RoutineItem key={item.id} item={item} handleChange={this.handleChange} />)
+        const allRoutines = this.state.routines.map(item => <ActionItem key={item.id} item={item} handleChange={this.handleChange} />)
 
         return (
-            <div className='action-container'>
+            <div className='action-plate'>
                 <div className='action-list'>
                     {allRoutines}
                 </div>

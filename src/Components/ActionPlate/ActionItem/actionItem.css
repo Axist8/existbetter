@@ -1,0 +1,30 @@
+.action-item {
+    margin: 10px;
+    overflow: auto;
+    box-shadow: rgb(253, 197, 255) 1px 1px 7px;
+    background-color:rgba(0, 0, 0, 0.5);
+    padding: 5px 8px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.action-button,
+.action-text {
+    display: inline;
+}
+
+.action-button {
+    margin: -1px 1px 0 -4px;
+    padding: 0 7px;
+    border-radius: 15px;
+    background-color: rgba(253, 255, 117, 0.158);
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-family: 'Syne Mono', monospace;
+    box-sizing: border-box;
+}
+
+.action-text {
+    margin-left: 7px;
+}

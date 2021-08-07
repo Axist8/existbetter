@@ -1,23 +1,27 @@
 const todoData = [
     {
         id: 1,
-        todo: "My first todo",
-        completed: false
+        userInput: "My first todo",
+        completed: false,
+        type:'checkmark'
     },
     {
         id: 2,
-        todo: "My second todo",
-        completed: false
+        userInput: "My second todo",
+        completed: false,
+        type: 'checkmark'
     },
     {
         id: 3,
-        todo: "My third todo",
-        completed: false
+        userInput: "My third todo",
+        completed: false,
+        type: 'checkmark'
     },
     {
         id: 4,
-        todo: "My fourth todo",
-        completed: false
+        userInput: "My fourth todo",
+        completed: false,
+        type: 'checkmark'
     },
 ]
 

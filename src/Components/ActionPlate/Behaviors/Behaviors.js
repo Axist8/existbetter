@@ -1,7 +1,6 @@
 import React from 'react'
-import BehaviorItem from './BehaviorItem/BehaviorItem'
+import ActionItem from '../ActionItem/ActionItem'
 import AddBehavior from './AddBehavior/AddBehavior'
-import './behaviors.css'
 import behaviorData from './behaviorData'
 
 class Behaviors extends React.Component {
@@ -20,11 +19,11 @@ class Behaviors extends React.Component {
     }
 
     render() {
-        const allBehaviors = this.state.behaviors.map(item => <BehaviorItem key={item.id} item={item} handleChange={this.handleChange} />)
+        const allBehaviors = this.state.behaviors.map(item => <ActionItem key={item.id} item={item} handleChange={this.handleChange} />)
 
         return (
-            <div className='action-container'>
-                <div className='behavior-list'>
+            <div className='action-plate'>
+                <div className='action-list'>
                     {allBehaviors}
                 </div>
                 <AddBehavior />

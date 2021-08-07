@@ -1,6 +1,6 @@
 import React from 'react'
 import AddGoal from './AddGoal/AddGoal'
-import CheckItem from '../CheckItem/CheckItem'
+import ActionItem from '../ActionItem/ActionItem'
 import goalsData from './goalsData'
 
 class Goals extends React.Component {
@@ -30,10 +30,10 @@ class Goals extends React.Component {
     }
 
     render() {
-        const allGoals = this.state.goals.map(item => <CheckItem key={item.id} item={item} handleChange={this.handleChange} />)
+        const allGoals = this.state.goals.map(item => <ActionItem key={item.id} item={item} handleChange={this.handleChange} />)
 
         return (
-            <div className='action-container'>
+            <div className='action-plate'>
                 <div className='action-list'>
                     {allGoals}
                 </div>

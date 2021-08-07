@@ -35,15 +35,16 @@ class ActionPlate extends React.Component {
     
     render() {
         return (
-            <div className='app-container'>
-                <Nav handleClick={this.handleClick} currentPanel={this.state.currentPanel} />
-                <div className='action-plate'>
+            <div className='action-plate-and-nav-container'>
+                <div className='action-plate-container'>
                     {this.state.currentPanel === 'Routines' ? <Routines /> : null}
                     {this.state.currentPanel === 'Behaviors' ? <Behaviors /> : null}
                     {this.state.currentPanel === 'Todo' ? <Todo /> : null}
                     {this.state.currentPanel === 'Goals' ? <Goals /> : null}
                     {this.state.currentPanel === 'WishList' ? <WishList /> : null}
                 </div>
+                
+                <Nav handleClick={this.handleClick} currentPanel={this.state.currentPanel} />
             </div>
         )
     }

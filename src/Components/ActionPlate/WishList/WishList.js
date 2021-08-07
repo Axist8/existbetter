@@ -1,5 +1,5 @@
 import React from 'react'
-import CheckItem from '../CheckItem/CheckItem'
+import ActionItem from '../ActionItem/ActionItem'
 import AddWish from './AddWish/AddWish'
 import wishListData from './wishListData'
 
@@ -28,11 +28,11 @@ class WishList extends React.Component {
     }
 
     render() {
-        const allWishes = this.state.wishList.map(item => <CheckItem key={item.id} item={item} handleChange={this.handleChange} />)
+        const allWishes = this.state.wishList.map(item => <ActionItem key={item.id} item={item} handleChange={this.handleChange} />)
 
         return (
-            <div className='action-container'>
-                <div className='wish-list'>
+            <div className='action-plate'>
+                <div className='action-list'>
                     {allWishes}
                 </div>
                 <AddWish />

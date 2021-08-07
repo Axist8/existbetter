@@ -1,5 +1,5 @@
 import React from 'react'
-import TodoItem from './TodoItem/TodoItem'
+import ActionItem from '../ActionItem/ActionItem'
 import AddTodo from './AddTodo/AddTodo'
 import todoData from './todoData'
 
@@ -30,11 +30,11 @@ class Todo extends React.Component {
     }
 
     render() {
-        const allTodos = this.state.todos.map(item => <TodoItem key={item.id} item={item} handleChange={this.handleChange} />)
+        const allTodos = this.state.todos.map(item => <ActionItem key={item.id} item={item} handleChange={this.handleChange} />)
 
         return (
-            <div className='action-container'>
-                <div className='todo-list'>
+            <div className='action-plate'>
+                <div className='action-list'>
                     {allTodos}
                 </div>
                 <AddTodo />
