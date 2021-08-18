@@ -76,9 +76,11 @@
 }
 
 .action-list {
+    max-height: 53vh;
     width: 100%;
     overflow: auto;
     box-sizing: border-box;
+    margin: 0;
 }
 
 .active-switch {
@@ -108,34 +110,79 @@ h4 {
 }
 
 .add-item {
-    margin: 10px;
+    margin: 3px 10px 10px 10px;
+}
+
+@media only screen and (min-height: 590px) {
+    .action-list {
+        max-height: 54vh;
+    }
+}
+
+@media only screen and (min-height: 630px) {
+    .action-list {
+        max-height: 55vh;
+    }
 }
 
 @media only screen and (min-height: 666px) {
+    .action-list {
+        max-height: 56vh;
+    }
     .action-plate-container {
         max-height: 75vh;
     }
 }
 
 @media only screen and (min-height: 730px) {
+    .action-list {
+        max-height: 59vh;
+    }
     .action-plate-container {
         max-height: 77vh;
     }
 }
 
 @media only screen and (min-height: 820px) {
+    .action-list {
+        max-height: 62.5vh;
+    }
     .action-plate-container {
         max-height: 80vh;
     }
 }
 
+@media only screen and (min-height: 910px) {
+    .action-list {
+        max-height: 63.2vh;
+    }
+}
+
 @media only screen and (min-height: 1000px) {
+    .action-list {
+        max-height: 65.5vh;
+    }
     .action-plate-container {
         max-height: 82vh;
     }
 }
 
+@media only screen and (min-height: 1100px) {
+    .action-list {
+        max-height: 66vh;
+    }
+}
+
+@media only screen and (min-height: 1200px) {
+    .action-list {
+        max-height: 67vh;
+    }
+}
+
 @media only screen and (min-height: 1300px) {
+    .action-list {
+        max-height: 70vh;
+    }
     .action-plate-container {
         max-height: 85vh;
     }

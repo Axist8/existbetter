@@ -12,6 +12,7 @@ function AddAction(props) {
                 onChange={props.handleChange}
                 value={props.value}
                 className='user-input-text-box'
+                required
             />
         </form>
     )
