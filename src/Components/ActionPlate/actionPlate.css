@@ -22,7 +22,7 @@
     flex-basis: 85%;
     height: 89%;
     background: black;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #9A070E, #9e4676, #f98a2f93);  /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #4e080b63, #77335a48, #b6662457);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4e080b63, #77335a48, #b6662457); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: 15px;
     box-sizing: border-box;
@@ -33,10 +33,63 @@
     border: 1px thistle solid;
 }
 
+.active-switch {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0 0 0;
+    height: 1.1rem;
+}
+
+.active-title-container {
+    flex-basis: 40%;
+    margin-left: 70px;
+}
+
+.active-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: .7rem;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #f98b2f, #ff6068);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display:inline-block;
+    -webkit-transform:scale(2.3,1); /* Safari and Chrome */
+    -moz-transform:scale(2.3,1); /* Firefox */
+    -ms-transform:scale(2.3,1); /* IE 9 */
+    -o-transform:scale(2.3,1); /* Opera */
+    transform:scale(2.3,1); /* W3C */
+}
+
+.switch {
+    border: none;
+    background-color: transparent;
+    margin: 0 0 0 -70px;
+    padding: 2px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.switch:focus {
+    border: none;
+    box-shadow: none;
+}
+
 .action-list {
     width: 100%;
     overflow: auto;
     box-sizing: border-box;
+}
+
+.active-switch {
+    display: flex;
+    width: 100%;
+    
+}
+
+h4 {
+    padding: 0;
+    margin: 0;
 }
 
 .action-list::-webkit-scrollbar {

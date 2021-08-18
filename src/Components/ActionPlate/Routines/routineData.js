@@ -9,11 +9,7 @@ const routineData = [{id: 1, userInput: 'Routine 1', completed: false, type: 'ch
     {id: 9, userInput: 'Routine 9', completed: false, type: 'checkmark'},
     {id: 10, userInput: 'Routine 10', completed: false, type: 'checkmark'},
     {id: 11, userInput: 'Routine 10', completed: false, type: 'checkmark'},
-    {id: 12, userInput: 'Routine 10', completed: false, type: 'checkmark'},
-    {id: 9, userInput: 'Routine 9', completed: false, type: 'checkmark'},
-    {id: 10, userInput: 'Routine 10', completed: false, type: 'checkmark'},
-    {id: 11, userInput: 'Routine 10', completed: false, type: 'checkmark'},
-    {id: 12, userInput: 'Routine 10', completed: false, type: 'checkmark'},
+    {id: 12, userInput: 'Routine 10', completed: false, type: 'checkmark'}
 ]
 
 export default routineData

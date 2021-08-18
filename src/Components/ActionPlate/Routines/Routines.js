@@ -1,7 +1,7 @@
 import React from 'react'
 import ActionItem from '../ActionItem/ActionItem'
-import AddRoutine from './AddRoutine/AddRoutine'
 import routineData from './routineData'
+import AddAction from '../AddAction/AddAction'
 
 class Routines extends React.Component {
     constructor() {
@@ -37,7 +37,7 @@ class Routines extends React.Component {
                 <div className='action-list'>
                     {allRoutines}
                 </div>
-                <AddRoutine />
+                <AddAction />
             </div>
         )
     }

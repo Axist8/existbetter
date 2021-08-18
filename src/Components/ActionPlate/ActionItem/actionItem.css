@@ -15,12 +15,14 @@
 
 .action-button {
     margin: -1px 1px 0 -4px;
-    padding: 0 7px;
+    padding: 0;
+    height: 20px;
+    width: 20px;
     border-radius: 15px;
-    background-color: rgba(253, 255, 117, 0.158);
+    background-color: rgba(241, 183, 75, 0.74);
     border: none;
-    color: white;
-    font-size: 20px;
+    color: #000000;
+    font-size: 13px;
     font-family: 'Syne Mono', monospace;
     box-sizing: border-box;
 }

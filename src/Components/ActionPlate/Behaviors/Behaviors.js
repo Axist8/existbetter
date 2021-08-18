@@ -1,7 +1,7 @@
 import React from 'react'
 import ActionItem from '../ActionItem/ActionItem'
-import AddBehavior from './AddBehavior/AddBehavior'
 import behaviorData from './behaviorData'
+import AddAction from '../AddAction/AddAction'
 
 class Behaviors extends React.Component {
     constructor() {
@@ -26,7 +26,7 @@ class Behaviors extends React.Component {
                 <div className='action-list'>
                     {allBehaviors}
                 </div>
-                <AddBehavior />
+                <AddAction />
             </div>
         )
     }

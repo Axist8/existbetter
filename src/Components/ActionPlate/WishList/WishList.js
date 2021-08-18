@@ -1,7 +1,7 @@
 import React from 'react'
 import ActionItem from '../ActionItem/ActionItem'
-import AddWish from './AddWish/AddWish'
 import wishListData from './wishListData'
+import AddAction from '../AddAction/AddAction'
 
 class WishList extends React.Component {
     constructor() {
@@ -35,7 +35,7 @@ class WishList extends React.Component {
                 <div className='action-list'>
                     {allWishes}
                 </div>
-                <AddWish />
+                <AddAction />
             </div>
         )
     }
