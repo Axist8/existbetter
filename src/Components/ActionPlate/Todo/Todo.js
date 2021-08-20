@@ -62,7 +62,7 @@ class Todo extends React.Component {
                 const compIdMap = comp.map(item => item.id)
                 for (let j = 0; j < 200; j++) {
                     if (comp.length >= 100) {
-                        comp.pop();
+                        comp.pop()
                     }
                     if (!compIdMap.includes(j)) {
                         comp.unshift(
@@ -112,7 +112,9 @@ class Todo extends React.Component {
                 <div className='action-list-container'>
                     <div className='active-switch'>
                         <div className='active-title-container'>
-                            <h4 className='active-title'>{this.state.completedTab ? 'complete' : 'active'}</h4>
+                            <h4 className='active-title'>
+                                {this.state.completedTab ? 'complete' : 'active'}
+                            </h4>
                         </div>
                         <button className='switch' onClick={this.handleSwitch}>
                             ⇋
