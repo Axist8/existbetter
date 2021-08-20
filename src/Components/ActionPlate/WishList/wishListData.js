@@ -1,3 +1,3 @@
-const wishListData = []
+const wishListData = {active: [], completed: []}
 
 export default wishListData

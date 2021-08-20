@@ -4,7 +4,7 @@ function AddAction(props) {
     const placeholder = 'Add a new ' + props.section
     const inputName = 'new' + props.section
     return (
-        <form className='add-item' onSubmit={props.handleSubmit}>
+        <form className='add-item' onSubmit={props.handleSubmit} autoComplete='off'>
             <input
                 type='text'
                 placeholder={placeholder}

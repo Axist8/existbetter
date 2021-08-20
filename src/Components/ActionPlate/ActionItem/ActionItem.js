@@ -8,15 +8,24 @@ function ActionItem(props) {
 
     return (
         <div className='action-item'>
-            {props.item.type === 'complete' ? null :
-            <button 
-                className='action-button'
-                onClick={props.handleClick}
-                id={props.id}
-            >
-                {buttonContent}
-            </button>}
             <p className='action-text'>{props.item.userInput}</p>
+            <div className='action-controls'>
+                {props.item.type === 'increment' ?
+                    <p className='counter-container'>
+                        <span className='counter'>{props.item.counter}</span>
+                    </p>
+                    : null
+                }
+                <button className='edit-btn'>⋮</button>
+                {props.item.type === 'complete' ? null :
+                <button 
+                    className='action-btn'
+                    onClick={props.handleClick}
+                    id={props.id}
+                >
+                    {buttonContent}
+                </button>}
+            </div>
         </div>
     )
 }
