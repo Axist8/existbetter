@@ -7,37 +7,110 @@ class Routines extends React.Component {
     constructor() {
         super()
         this.state = {
+            inactiveTab: false,
+            newRoutine: '',
             routines: routineData
         }
         this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+        this.handleSwitch = this.handleSwitch.bind(this)
     }
     
-    handleChange(id) {
-        this.setState(prev => {
-            const updatedRoutines = prev.routines.map(routine => {
-                if (routine.id === id) {
-                    return {
-                        ...routine,
-                        completed: !routine.completed
+    handleChange(e) {
+        const {value} = e.target
+        this.setState({ newRoutine: value })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        if (routineData.length >= 200) {
+            alert('Limit of 200 Routines reached')
+            return
+        }
+        const idMap = routineData.map(routine => routine.id)
+        for (let i = 0; i < 200; i++) {
+            if (!idMap.includes(i)) {
+                routineData.push(
+                    {
+                        id: i,
+                        userInput: this.state.newRoutine,
+                        type: 'checkmark'
                     }
-                }
-                return routine
-            })
+                )
+                break
+            }
+        }
+        this.setState(prev => {
             return {
-                routines: updatedRoutines
+                ...prev,
+                inactiveTab: false,
+                newRoutine: ''
             }
         })
     }
 
+    handleClick(e) {
+        const routineId = parseInt(e.target.id)
+        const routInd = routineData.findIndex((obj => obj.id === routineId))
+        routineData[routInd].type = 'complete'
+        this.setState(prev => prev)
+    }
+
+    handleSwitch() {
+        this.setState({
+            inactiveTab: !this.state.inactiveTab
+        })
+    }
+
     render() {
-        const allRoutines = this.state.routines.map(item => <ActionItem key={item.id} item={item} handleChange={this.handleChange} />)
+        const activeRoutines = this.state.routines.filter(routine => {
+            return routine.type === 'checkmark'
+        }).map(item =>
+            <ActionItem
+                key={item.id}
+                id={item.id}
+                item={item}
+                handleClick={this.handleClick}
+            />
+        )
+        
+        const inactiveRoutines = this.state.routines.filter(routine => {
+            return routine.type === 'complete'
+        }).map(item =>
+            <ActionItem
+                key={item.id}
+                id={item.id}
+                item={item}
+            />    
+        )
+
+        const actionContent = this.state.inactiveTab ?
+            inactiveRoutines : activeRoutines
 
         return (
             <div className='action-plate'>
-                <div className='action-list'>
-                    {allRoutines}
+                <div className='action-list-container'>
+                    <div className='active-switch'>
+                        <div className='active-title-container'>
+                            <h4 className='active-title'>
+                                {this.state.inactiveTab ? 'inactive' : 'active'}
+                            </h4>
+                        </div>
+                        <button className='switch' onClick={this.handleSwitch}>
+                            ⇋
+                        </button>
+                    </div>
+                    <div className='action-list'>
+                        {actionContent}
+                    </div>
                 </div>
-                <AddAction />
+                <AddAction
+                    handleSubmit={this.handleSubmit}
+                    handleChange={this.handleChange}
+                    value={this.state.newRoutine}
+                    section='Routine'
+                />
             </div>
         )
     }

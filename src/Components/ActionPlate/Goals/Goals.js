@@ -55,7 +55,7 @@ class Goals extends React.Component {
     handleClick(e) {
         const goalId = e.target.id
         const active = goalsData.active
-        for (let i = 0; i <active.length; i++) {
+        for (let i = 0; i < active.length; i++) {
             const dataId = active[i].id
             if (parseInt(goalId) === dataId) {
                 const comp = goalsData.completed
@@ -113,7 +113,9 @@ class Goals extends React.Component {
                 <div className='action-list-container'>
                     <div className='active-switch'>
                         <div className='active-title-container'>
-                            <h4 className='active-title'>{this.state.completedTab ? 'complete' : 'active'}</h4>
+                            <h4 className='active-title'>
+                                {this.state.completedTab ? 'complete' : 'active'}
+                            </h4>
                         </div>
                         <button className='switch' onClick={this.handleSwitch}>
                             ⇋

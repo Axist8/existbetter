@@ -71,7 +71,7 @@ class Behaviors extends React.Component {
         )
 
         return (
-            <div className='action-plate'>
+            <div className='action-plate behavior-plate'>
                 <div className='action-list'>
                     {allBehaviors}
                 </div>

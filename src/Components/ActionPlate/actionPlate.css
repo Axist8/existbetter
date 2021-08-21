@@ -33,6 +33,10 @@
     border: 1px thistle solid;
 }
 
+.behavior-plate {
+    padding-top: 5px;
+}
+
 .active-switch {
     display: flex;
     justify-content: space-around;
@@ -113,21 +117,27 @@ h4 {
     margin: 3px 10px 10px 10px;
 }
 
-@media only screen and (min-height: 590px) {
+@media only screen and (min-height: 500px) {
     .action-list {
         max-height: 54vh;
     }
 }
 
-@media only screen and (min-height: 630px) {
+@media only screen and (min-height: 550px) {
     .action-list {
-        max-height: 55vh;
+        max-height: 56vh;
+    }
+}
+
+@media only screen and (min-height: 590px) {
+    .action-list {
+        max-height: 57vh;
     }
 }
 
 @media only screen and (min-height: 666px) {
     .action-list {
-        max-height: 56vh;
+        max-height: 58.2vh;
     }
     .action-plate-container {
         max-height: 75vh;
@@ -136,7 +146,7 @@ h4 {
 
 @media only screen and (min-height: 730px) {
     .action-list {
-        max-height: 59vh;
+        max-height: 61vh;
     }
     .action-plate-container {
         max-height: 77vh;
@@ -145,7 +155,7 @@ h4 {
 
 @media only screen and (min-height: 820px) {
     .action-list {
-        max-height: 62.5vh;
+        max-height: 64.5vh;
     }
     .action-plate-container {
         max-height: 80vh;
@@ -154,13 +164,13 @@ h4 {
 
 @media only screen and (min-height: 910px) {
     .action-list {
-        max-height: 63.2vh;
+        max-height: 65vh;
     }
 }
 
 @media only screen and (min-height: 1000px) {
     .action-list {
-        max-height: 65.5vh;
+        max-height: 67vh;
     }
     .action-plate-container {
         max-height: 82vh;
@@ -169,19 +179,19 @@ h4 {
 
 @media only screen and (min-height: 1100px) {
     .action-list {
-        max-height: 66vh;
+        max-height: 68vh;
     }
 }
 
 @media only screen and (min-height: 1200px) {
     .action-list {
-        max-height: 67vh;
+        max-height: 69vh;
     }
 }
 
 @media only screen and (min-height: 1300px) {
     .action-list {
-        max-height: 70vh;
+        max-height: 71vh;
     }
     .action-plate-container {
         max-height: 85vh;
