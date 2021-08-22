@@ -57,7 +57,6 @@ class Behaviors extends React.Component {
             }
         }
         this.setState({ behaviors: behaviorData })
-        console.log(behaviorData)
     }
 
     render() {

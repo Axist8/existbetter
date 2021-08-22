@@ -3,55 +3,114 @@
     overflow: auto;
     box-shadow: rgb(253, 197, 255) 1px 1px 7px;
     background-color:rgba(0, 0, 0, 0.5);
-    padding: 3px 5px;
+    padding: 3px 3px;
     border-radius: 15px;
     box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
 
 }
 
-.action-controls {
-    display: inline-grid;
-    grid-template-columns: repeat(3, 1fr);
-    flex-basis: 23%;
-    margin-right: -2px;
+.edit-and-text {
+    display: flex;
 }
 
 .edit-btn {
-    padding: 0;
-    margin: 0 5px 0 0;
-    grid-column-start: 2;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    border: 1px inset thistle;
+    margin-left: 4px;
+}
+
+.action-controls {
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: 15%;
+}
+
+.popup-btn {
+    margin: 0;
+    padding: 1px 0 0 2px;
+    width: 20px;
+    border-radius: 10px 4px 4px 10px;
+    background-color: rgba(241, 183, 75, 0.54);
+    border: thistle 1px outset;
+    color: black;
+    font-size: 13px;
+    font-weight: 800;
+    font-family: 'Syne Mono', monospace;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.popup-container {
+    position: relative;
+}
+
+.popup {
+    visibility: hidden;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    top: 0;
+    left: 0;
+    margin: 0 0 0 2px;
+}
+
+.popup-input {
+    visibility: hidden;
+    position: absolute;
+    margin: -1px 0 0 25px;
+}
+
+.action-edit {
+    background-color: black;
+    color: #e0b694;
+    border-radius: 10px 10px 0 10px;
+    padding: 2px 0 3px 5px;
+    border: 1px inset grey;
+}
+
+.submit-edit {
     background-color: transparent;
     border: none;
-    color: white;
-    text-shadow: 1px 1px white;
-    font-size: 1.2rem;
-    box-shadow: none;
+    font-size: 20px;
+    padding: 3px;
+    text-shadow: white 0 0 15px;
+}
+
+.visible {
+    visibility: visible;
 }
 
 .action-btn {
-    grid-column-start: 3;
     margin: 0;
-    padding: 0;
+    padding: 0 2px 0 0;
     width: 20px;
     border-radius: 4px 10px 10px 4px;
     background-color: rgba(241, 183, 75, 0.74);
     border: thistle 1px outset;
-    color: #000000;
+    color: red;
     font-size: 13px;
     font-family: 'Syne Mono', monospace;
     box-sizing: border-box;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 .action-text {
-    flex-basis: 77%;
     padding-left: 2px;
-    margin: 2px 0 0 0;
+    margin: 1px 2px 0;
     padding: 0 0 0 5px;
 }
 
 .counter-container {
-    margin: 0 0 0 -4px;
+    margin: 0 7px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -15,6 +15,7 @@ class Routines extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.handleSwitch = this.handleSwitch.bind(this)
+        this.handleEdit = this.handleEdit.bind(this)
     }
     
     handleChange(e) {
@@ -63,6 +64,11 @@ class Routines extends React.Component {
         })
     }
 
+    handleEdit(e) {
+        // const routineId = parseInt(e.target.id)
+        // const routInd = routineData.find
+    }
+
     render() {
         const activeRoutines = this.state.routines.filter(routine => {
             return routine.type === 'checkmark'
@@ -72,6 +78,8 @@ class Routines extends React.Component {
                 id={item.id}
                 item={item}
                 handleClick={this.handleClick}
+                handleEdit={this.handleEdit}
+                section='routine'
             />
         )
         
@@ -82,6 +90,7 @@ class Routines extends React.Component {
                 key={item.id}
                 id={item.id}
                 item={item}
+                section='routine'
             />    
         )
 
