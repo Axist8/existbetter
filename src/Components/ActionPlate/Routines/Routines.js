@@ -1,128 +1,127 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ActionItem from '../ActionItem/ActionItem'
-import routineData from './routineData'
 import AddAction from '../AddAction/AddAction'
+import useActiveTab from '../../../hooks/useActiveTab'
 
-class Routines extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            inactiveTab: false,
-            newRoutine: '',
-            routines: routineData
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSwitch = this.handleSwitch.bind(this)
-        this.handleEdit = this.handleEdit.bind(this)
-    }
-    
-    handleChange(e) {
+function Routines() {
+    const [activeTab, handleSwitch] = useActiveTab()
+    const [newRoutine, setNewRoutine] = useState('')
+    const [routines, setRoutines] = useState([])
+
+    const activeRoutines = routines.filter(routine => {
+        return routine.active
+    }).map(item => 
+        <ActionItem
+            key={item.id}
+            id={item.id}
+            item={item}
+            section='routine'
+            status='active'
+            handleClick={handleClick}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+        />
+    )
+    const inactiveRoutines = routines.filter(routine => {
+        return !routine.active
+    }).map(item => 
+        <ActionItem
+            key={item.id}
+            id={item.id}
+            item={item}
+            section='routine'
+            status='inactive'
+            handleClick={handleClick}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+        />
+    )
+    const actionContent = activeTab ? activeRoutines : inactiveRoutines
+
+    function handleChange(e) {
         const {value} = e.target
-        this.setState({ newRoutine: value })
+        setNewRoutine(value)
     }
 
-    handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
-        if (routineData.length >= 200) {
-            alert('Limit of 200 Routines reached')
+        console.log('huh')
+        if (routines.length >= 50) {
+            alert('Limit of 50 Routines reached')
             return
         }
-        const idMap = routineData.map(routine => routine.id)
-        for (let i = 0; i < 200; i++) {
+        const idMap = routines.map(routine => routine.id)
+        for (let i = 0; i < 50; i++) {
             if (!idMap.includes(i)) {
-                routineData.push(
-                    {
+                setRoutines(currentRoutines => {
+                    return [...currentRoutines, {
                         id: i,
-                        userInput: this.state.newRoutine,
-                        type: 'checkmark'
-                    }
-                )
+                        userInput: newRoutine,
+                        type: 'checkmark',
+                        active: true
+                    }]
+                })
                 break
             }
         }
-        this.setState(prev => {
-            return {
-                ...prev,
-                inactiveTab: false,
-                newRoutine: ''
+        if (!activeTab) {
+            handleSwitch()
+        }
+        setNewRoutine('')
+    }
+
+    function handleClick(id) {
+        const updatedRoutines = routines.map(routine => {
+            if (routine.id === id) {
+                routine.active = !routine.active
             }
+            return routine
         })
+        setRoutines(updatedRoutines)
     }
 
-    handleClick(e) {
-        const routineId = parseInt(e.target.id)
-        const routInd = routineData.findIndex((obj => obj.id === routineId))
-        routineData[routInd].type = 'complete'
-        this.setState(prev => prev)
-    }
-
-    handleSwitch() {
-        this.setState({
-            inactiveTab: !this.state.inactiveTab
+    function handleEdit(id, edit) {
+        const updatedRoutines = routines.map(routine => {
+            if (routine.id === id) {
+                routine.userInput = edit
+            }
+            return routine
         })
+        setRoutines(updatedRoutines)
     }
 
-    handleEdit(e) {
-        // const routineId = parseInt(e.target.id)
-        // const routInd = routineData.find
+    function handleDelete(id) {
+        const updatedRoutines = routines.filter(routine => {
+            return routine.id !== id
+        })
+        setRoutines(updatedRoutines)
     }
 
-    render() {
-        const activeRoutines = this.state.routines.filter(routine => {
-            return routine.type === 'checkmark'
-        }).map(item =>
-            <ActionItem
-                key={item.id}
-                id={item.id}
-                item={item}
-                handleClick={this.handleClick}
-                handleEdit={this.handleEdit}
-                section='routine'
-            />
-        )
-        
-        const inactiveRoutines = this.state.routines.filter(routine => {
-            return routine.type === 'complete'
-        }).map(item =>
-            <ActionItem
-                key={item.id}
-                id={item.id}
-                item={item}
-                section='routine'
-            />    
-        )
-
-        const actionContent = this.state.inactiveTab ?
-            inactiveRoutines : activeRoutines
-
-        return (
-            <div className='action-plate'>
-                <div className='action-list-container'>
-                    <div className='active-switch'>
-                        <div className='active-title-container'>
-                            <h4 className='active-title'>
-                                {this.state.inactiveTab ? 'inactive' : 'active'}
-                            </h4>
-                        </div>
-                        <button className='switch' onClick={this.handleSwitch}>
-                            ⇋
-                        </button>
+    return (
+        <div className='action-plate'>
+            <div className='action-list-container'>
+                <div className='active-switch'>
+                    <div className='active-title-container'>
+                        <h4 className='active-title'>
+                            {activeTab ? 'active' : 'inactive'} ✧ routines
+                        </h4>
                     </div>
-                    <div className='action-list'>
-                        {actionContent}
-                    </div>
+                    <button className='switch' onClick={handleSwitch}>
+                        ⇋
+                    </button>
                 </div>
-                <AddAction
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
-                    value={this.state.newRoutine}
-                    section='Routine'
-                />
+                <div className='action-list'>
+                    {actionContent}
+                </div>
             </div>
-        )
-    }
+            <AddAction
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                value={newRoutine}
+                section='Routine'
+            />
+        </div>
+    )
 }
 
 export default Routines

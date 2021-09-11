@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Nav from './Nav/Nav'
-import Routines from './Routines/RoutinesOld'
+import Routines from './Routines/Routines'
 import Behaviors from './Behaviors/Behaviors'
 import Goals from './Goals/Goals'
 import WishList from './WishList/WishList'

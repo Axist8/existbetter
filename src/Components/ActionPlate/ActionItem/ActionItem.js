@@ -1,62 +1,88 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import './actionItem.css'
 
-function toggleEditMenu(e) {
-    const targetId = e.target.id + '1'
-    document.getElementById(targetId).classList.toggle('visible')
-}
-
-function toggleEditInput(e) {
-    e.preventDefault()
-    const parentId = e.target.parentNode.id
-    const targetId = parentId + '1'
-    document.getElementById(parentId).classList.toggle('visible')
-    document.getElementById(targetId).classList.toggle('visible')
-    
-}
 
 function ActionItem(props) {
+    const [ userInput, setUserInput ] = useState(props.item.userInput)
+
+    const menuOptionsRef = useRef(null)
+    const editPanelRef = useRef(null)
+
+    const inputName = 'edit' + props.section
+
     let buttonContent;
-    if (props.item.type === 'checkmark') buttonContent = '✔️'
+    if (props.item.type === 'checkmark' && props.item.active) {
+        buttonContent = '✔️'
+    } else if (props.item.type === 'checkmark' && !props.item.active) {
+        buttonContent = '✖️'
+    }
     else buttonContent = '+'
 
-    const thisId = props.section + props.id
-    const thisIdPlus = thisId + '1'
-    const thisIdPlusPlus = thisIdPlus + '1'
+    function toggleEditMenu() {
+        if (editPanelRef.current.classList.contains('visible')) {
+            editPanelRef.current.classList.toggle('visible')
+            setUserInput(props.item.userInput)
+            return
+        }
+        menuOptionsRef.current.classList.toggle('visible')
+    }
 
-    const inputName = 'new' + props.section
+    function toggleEditInput(e) {
+        e.preventDefault()
+        menuOptionsRef.current.classList.toggle('visible')
+        editPanelRef.current.classList.toggle('visible')
+    }
+
+    function handleChange(e) {
+        const { value } = e.target
+        setUserInput(value)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        props.handleEdit(props.id, userInput)
+        editPanelRef.current.classList.toggle('visible')
+    }
+
+    function handleDelete(e) {
+        e.preventDefault()
+        props.handleDelete(props.item.id)
+    }
 
     return (
         <div className='action-item'>
             <div className='edit-and-text'>
-                <div id={thisId}
+                <div
                     className='popup-btn'
                     onClick={toggleEditMenu}
                 >⋮
                 </div>
                 <div className='popup-container'>
-                    <span className='popup' id={thisIdPlus}>
+                    <span className='popup' ref={menuOptionsRef}>
                         <button
                             className='edit-btn'
                             onClick={toggleEditInput}
                         >Edit</button>
                         <button
                             className='edit-btn'
-                            onClick={props.handleDelete}
+                            onClick={handleDelete}
                         >Delete</button>
                     </span>
                 </div>
-                <form className='popup-input' id={thisIdPlusPlus}>
+                <form className='popup-input' ref={editPanelRef}>
                     <textarea rows='4' cols='26'
                         name={inputName}
-                        value={props.value}
-                        onChange={props.handleEdit}
+                        value={userInput}
+                        onChange={handleChange}
                         className='action-edit'
                         required
                     />
-                    <button className='submit-edit'>⚫</button>
+                    <button
+                        className='submit-edit'
+                        onClick={handleSubmit}
+                    >⚫</button>
                 </form>
-                <p className='action-text'>{props.item.userInput}</p>
+                <p className='action-text'>{userInput}</p>
             </div>
             <div className='action-controls'>
                 {props.item.type === 'increment' ?
@@ -68,7 +94,7 @@ function ActionItem(props) {
                 {props.item.type === 'complete' ? null :
                 <button 
                     className='action-btn'
-                    onClick={props.handleClick}
+                    onClick={() => props.handleClick(props.item.id)}
                     id={props.id}
                 >
                     {buttonContent}
