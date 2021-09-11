@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Nav from './Nav/Nav'
-import Routines from './Routines/Routines'
+import Routines from './Routines/RoutinesOld'
 import Behaviors from './Behaviors/Behaviors'
 import Goals from './Goals/Goals'
 import WishList from './WishList/WishList'
@@ -8,46 +8,34 @@ import Todo from './Todo/Todo'
 
 import './actionPlate.css'
 
-class ActionPlate extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            currentPanel: 'Routines'
-        }
-        this.handleClick = this.handleClick.bind(this)
-    }
+function ActionPlate() {
+    const [currentPanel, setCurrentPanel] = useState('Routines')
 
-    handleClick(panel) {
-        
+    function handleClick(newPanel) {
         document.getElementById('Routines').classList.remove('neon')
         document.getElementById('Behaviors').classList.remove('neon')
         document.getElementById('Todo').classList.remove('neon')
         document.getElementById('Goals').classList.remove('neon')
         document.getElementById('WishList').classList.remove('neon')
-        
-        this.setState({
-            currentPanel: panel
-        })
- 
-        
-        document.getElementById(panel).classList.add('neon')
+
+        setCurrentPanel(newPanel)
+
+        document.getElementById(newPanel).classList.add('neon')
     }
-    
-    render() {
-        return (
-            <div className='action-plate-and-nav-container'>
-                <div className='action-plate-container'>
-                    {this.state.currentPanel === 'Routines' ? <Routines /> : null}
-                    {this.state.currentPanel === 'Behaviors' ? <Behaviors /> : null}
-                    {this.state.currentPanel === 'Todo' ? <Todo /> : null}
-                    {this.state.currentPanel === 'Goals' ? <Goals /> : null}
-                    {this.state.currentPanel === 'WishList' ? <WishList /> : null}
-                </div>
-                
-                <Nav handleClick={this.handleClick} currentPanel={this.state.currentPanel} />
+
+    return (
+        <div className='action-plate-and-nav-container'>
+            <div className='action-plate-container'>
+                {currentPanel === 'Routines' ? <Routines /> : null}
+                {currentPanel === 'Behaviors' ? <Behaviors /> : null}
+                {currentPanel === 'Todo' ? <Todo /> : null}
+                {currentPanel === 'Goals' ? <Goals /> : null}
+                {currentPanel === 'WishList' ? <WishList /> : null}
             </div>
-        )
-    }
+            
+            <Nav handleClick={handleClick} currentPanel={currentPanel} />
+        </div>
+    )
 }
 
 export default ActionPlate
