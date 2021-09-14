@@ -90,7 +90,7 @@ function CheckMarkList({section}) {
                 <div className='active-switch'>
                     <div className='active-title-container'>
                         <h4 className='active-title'>
-                            {activeTab ?  'active' : 'complete'} ✧ {section}s
+                            {activeTab ?  'active' : 'complete'} ✧ {section}{section === 'wish' ? 'e' : null}s
                         </h4>
                     </div>
                     <button className='switch' onClick={handleSwitch}>

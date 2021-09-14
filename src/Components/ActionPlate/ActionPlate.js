@@ -2,9 +2,7 @@ import React, {useState} from 'react'
 import Nav from './Nav/Nav'
 import Routines from './Routines/Routines'
 import Behaviors from './Behaviors/Behaviors'
-import Goals from './Goals/Goals'
-import WishList from './WishList/WishList'
-import Todo from './Todo/Todo'
+import CheckMarkList from './CheckMarkList/CheckMarkList'
 
 import './actionPlate.css'
 
@@ -28,9 +26,9 @@ function ActionPlate() {
             <div className='action-plate-container'>
                 {currentPanel === 'Routines' ? <Routines /> : null}
                 {currentPanel === 'Behaviors' ? <Behaviors /> : null}
-                {currentPanel === 'Todo' ? <Todo /> : null}
-                {currentPanel === 'Goals' ? <Goals /> : null}
-                {currentPanel === 'WishList' ? <WishList /> : null}
+                {currentPanel === 'Todo' ? <CheckMarkList section='todo' /> : null}
+                {currentPanel === 'Goals' ? <CheckMarkList section='goal' /> : null}
+                {currentPanel === 'WishList' ? <CheckMarkList section='wish' /> : null}
             </div>
             
             <Nav handleClick={handleClick} currentPanel={currentPanel} />

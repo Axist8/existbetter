@@ -95,7 +95,7 @@ function Behaviors() {
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 value={newBehavior}
-                section='Behavior' 
+                section='behavior' 
             />
         </div>
     )

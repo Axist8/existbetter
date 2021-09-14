@@ -96,7 +96,7 @@ function Routines() {
                 <div className='active-switch'>
                     <div className='active-title-container'>
                         <h4 className='active-title'>
-                            {activeTab ? 'active' : 'inactive'} ✧ routines
+                            routines ✧ {activeTab ? 'active' : 'inactive'}
                         </h4>
                     </div>
                     <button className='switch' onClick={handleSwitch}>
@@ -111,7 +111,7 @@ function Routines() {
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 value={newRoutine}
-                section='Routine'
+                section='routine'
             />
         </div>
     )
