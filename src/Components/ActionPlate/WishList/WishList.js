@@ -1,139 +1,125 @@
-import React from 'react'
-import ActionItem from '../ActionItem/ActionItem'
-import wishListData from './wishListData'
+import React, {useState} from 'react'
 import AddAction from '../AddAction/AddAction'
+import useActiveTab from '../../../hooks/useActiveTab'
+import ActiveWishes from './ActiveWishes'
+import CompletedWishes from './CompletedWishes'
 
-class WishList extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            completedTab: false,
-            newWish: '',
-            wishList: wishListData.active,
-            completedWishes: wishListData.completed
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSwitch = this.handleSwitch.bind(this)
-    }
-    
-    handleChange(e) {
+function WishList() {
+    const [activeTab, handleSwitch] = useActiveTab()
+    const [newWish, setNewWish] = useState('')
+    const [wishes, setWishes] = useState([])
+    const [completedWishes, setCompletedWishes] = useState([])
+
+    function handleChange(e) {
         const {value} = e.target
-        this.setState({ newWish: value })
+        setNewWish(value)
     }
 
-    handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
-        const active = wishListData.active
-        if (active.length >= 100) {
-            alert('Limit of 100 Wishes reached')
-            return
-        }
-        const idMap = active.map(wish => wish.id)
-        for (let i = 0; i < 100; i++) {
+        const idMap = wishes.map(wish => wish.id)
+        for (let i = 0; i < (wishes.length + 1); i++) {
             if (!idMap.includes(i)) {
-                wishListData.active.push(
-                    {
-                        id: i,
-                        userInput: this.state.newWish,
-                        type: 'checkmark'
-                    }
-                )
+                setWishes(prev => {
+                    return [
+                        ...prev,
+                        {
+                            id: i,
+                            userInput: newWish,
+                            type: 'checkmark',
+                            active: true
+                        }
+                    ]
+                })
                 break
             }
         }
-        this.setState(prev => {
-            return {
-                ...prev,
-                completedTab: false,
-                newWish: ''
-            }
-        })
+        if (!activeTab) handleSwitch()
+        setNewWish('')
     }
 
-    handleClick(e) {
-        const wishId = e.target.id
-        const active = wishListData.active
-        for (let i = 0; i < active.length; i++) {
-            const dataId = active[i].id
-            if (parseInt(wishId) === dataId) {
-                const comp = wishListData.completed
-                const compIdMap = comp.map(item => item.id)
-                for (let j = 0; j < 200; j++) {
-                    if (comp.length >= 100) {
-                        comp.pop()
-                    }
-                    if (!compIdMap.includes(j)) {
-                        comp.unshift(
-                            {
-                                id: j,
-                                userInput: active[i].userInput,
-                                type: 'complete'
-                            }
-                        )
-                        break
-                    }
-                }
-                active.splice(i, 1)
+    function handleClick(id) {
+        if (completedWishes.length === 50) {
+            const deletedWish = completedWishes.slice(0, -1)
+            setCompletedWishes(deletedWish)
+        }
+        const idMap = completedWishes.map(wish => wish.id)
+        for (let i = 0; i < 50; i++) {
+            if (!idMap.includes(i)) {
+                const completedWish = wishes.find(wish => wish.id === id)
+                setCompletedWishes(prev => [{...completedWish, id: i, type: 'complete'}, ...prev])
+                break
             }
         }
-        this.setState(prev => prev)
+        const updatedwishes = wishes.filter(wish => wish.id !== id)
+        setWishes(updatedwishes)
     }
 
-    handleSwitch() {
-        this.setState({
-            completedTab: !this.state.completedTab
+    function handleEdit(id, edit) {
+        const updatewishes = wishes.map(wish => {
+            if (wish.id === id) wish.userInput = edit
+            return wish
         })
+        setWishes(updatewishes)
     }
 
-    render() {
-        const allWishes = this.state.wishList.map(item =>
-            <ActionItem
-                key={item.id}
-                id={item.id}
-                item={item}
-                handleClick={this.handleClick}
-            />
-        )
+    function handleDelete(id, complete) {
+        if (complete) {
+            const updatedcompletedWishes = completedWishes.filter(wish => {
+                return wish.id !== id
+            })
+            setCompletedWishes(updatedcompletedWishes)
+        } else {
+            const updatedwishes = wishes.filter(wish => {
+                return wish.id !== id
+            })
+            setWishes(updatedwishes)
+        }
+    }
 
-        const completed = this.state.completedWishes.map(item =>
-            <ActionItem
-                key={item.id}
-                id={item.id}
-                item={item}
-            />
-        )
+    function handleMakeActive(id) {
+        const renewedWish = completedWishes.find(wish => wish.id === id)
+        const updatedwishes = [{...renewedWish, type: 'checkmark'}, ...wishes]
+        setWishes(updatedwishes)
+        handleDelete(id, true)
+    }
 
-        const actionContent = this.state.completedTab ?
-            completed : allWishes
-
-        return (
-            <div className='action-plate'>
-                <div className='action-list-container'>
-                    <div className='active-switch'>
-                        <div className='active-title-container'>
-                            <h4 className='active-title'>
-                                {this.state.completedTab ? 'complete' : 'active'}
-                            </h4>
-                        </div>
-                        <button className='switch' onClick={this.handleSwitch}>
-                            ⇋
-                        </button>
+    return (
+        <div className='action-plate'>
+            <div className='action-list-container'>
+                <div className='active-switch'>
+                    <div className='active-title-container'>
+                        <h4 className='active-title'>
+                            {activeTab ?  'active' : 'complete'} ✧ wishes
+                        </h4>
                     </div>
-                    <div className='action-list'>
-                        {actionContent}
-                    </div>
+                    <button className='switch' onClick={handleSwitch}>
+                        ⇋
+                    </button>
                 </div>
-                <AddAction
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
-                    value={this.state.newWish}
-                    section='Wish'    
-                />
+                {
+                    activeTab ? 
+                        <ActiveWishes
+                            wishes={wishes}
+                            handleClick={handleClick}
+                            handleEdit={handleEdit}
+                            handleDelete={handleDelete}    
+                        /> 
+                        : 
+                        <CompletedWishes
+                            completedWishes={completedWishes}
+                            handleDelete={handleDelete}
+                            handleMakeActive={handleMakeActive}
+                        />}
             </div>
-        )
-    }
+            <AddAction
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                value={newWish}
+                section='wish'
+            />
+        </div>
+    )
 }
 
 export default WishList
