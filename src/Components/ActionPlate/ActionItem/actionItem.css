@@ -93,6 +93,7 @@
     visibility: visible;
 }
 
+.decrement-btn,
 .action-btn {
     margin: 0;
     padding: 0 2px 0 0;
@@ -100,12 +101,16 @@
     border-radius: 4px 10px 10px 4px;
     background-color: rgba(241, 183, 75, 0.74);
     border: thistle 1px outset;
-    color: red;
     font-size: 13px;
     font-family: 'Syne Mono', monospace;
     box-sizing: border-box;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
+}
+
+.decrement-btn {
+    border-radius: 4px;
+    margin-right: 7px;
 }
 
 .action-text {

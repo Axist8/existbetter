@@ -118,6 +118,15 @@ function ActionItem(props) {
             </div>
             <div className='action-controls'>
                 {props.item.type === 'increment' ?
+                    <button
+                        className='decrement-btn'
+                        onClick={() => props.handleClick(props.id, false)}
+                    >
+                        -
+                    </button>
+                    : null
+                }
+                {props.item.type === 'increment' ?
                     <p className='counter-container'>
                         <span className='counter'>{props.item.counter}</span>
                     </p>
@@ -126,8 +135,7 @@ function ActionItem(props) {
                 {props.item.type === 'complete' ? null :
                 <button 
                     className='action-btn'
-                    onClick={() => props.handleClick(props.item.id)}
-                    id={props.id}
+                    onClick={() => props.handleClick(props.id, true)}
                 >
                     {buttonContent}
                 </button>}

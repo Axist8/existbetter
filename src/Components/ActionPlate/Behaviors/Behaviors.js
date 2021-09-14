@@ -25,13 +25,23 @@ function Behaviors() {
         setNewBehavior(value)
     }
 
-    function handleClick(id) {
-        const updatedBehaviors = behaviors.map(behavior => {
-            if (behavior.id === id) {
-                behavior.counter++
-            }
-            return behavior
-        })
+    function handleClick(id, increment) {
+        let updatedBehaviors;
+        if (increment) {
+            updatedBehaviors = behaviors.map(behavior => {
+                if (behavior.id === id) {
+                    behavior.counter++
+                }
+                return behavior
+            })
+        } else {
+            updatedBehaviors = behaviors.map(behavior => {
+                if (behavior.id === id) {
+                    behavior.counter--
+                }
+                return behavior
+            })
+        }
         setBehaviors(updatedBehaviors)
     }
 
