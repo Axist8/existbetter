@@ -63,9 +63,7 @@ function Behaviors() {
 
     function handleEdit(id, edit) {
         const updatedBehaviors = behaviors.map(behavior => {
-            if (behavior.id === id) {
-                behavior.userInput = edit
-            }
+            if (behavior.id === id) behavior.userInput = edit
             return behavior
         })
         setBehaviors(updatedBehaviors)

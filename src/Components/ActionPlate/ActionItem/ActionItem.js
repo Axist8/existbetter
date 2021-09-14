@@ -7,6 +7,7 @@ function ActionItem(props) {
 
     const menuOptionsRef = useRef(null)
     const editPanelRef = useRef(null)
+    const editBoxRef = useRef(null)
 
     const inputName = 'edit' + props.section
 
@@ -31,6 +32,8 @@ function ActionItem(props) {
         e.preventDefault()
         menuOptionsRef.current.classList.toggle('visible')
         editPanelRef.current.classList.toggle('visible')
+        editBoxRef.current.focus()
+        editBoxRef.current.selectionStart = editBoxRef.current.selectionEnd = 10000;
     }
 
     function handleChange(e) {
@@ -45,8 +48,25 @@ function ActionItem(props) {
     }
 
     function handleDelete(e) {
+        console.log('well naw')
         e.preventDefault()
-        props.handleDelete(props.item.id)
+        const complete = props.item.type === 'complete'
+        props.handleDelete(props.item.id, complete)
+    }
+
+    function handleMakeActive(e) {
+        e.preventDefault()
+        props.handleMakeActive(props.id)
+    }
+
+    function handlePressEnter(e) {
+        if (e.code === "Enter" || e.code === 'NumpadEnter') {
+            if (document.activeElement === editBoxRef.current) {
+                console.log('handlePressEnter w/ editBoxFocus')
+                props.handleEdit(props.id, userInput)
+                editPanelRef.current.classList.toggle('visible')
+            }
+        }
     }
 
     return (
@@ -59,14 +79,24 @@ function ActionItem(props) {
                 </div>
                 <div className='popup-container'>
                     <span className='popup' ref={menuOptionsRef}>
-                        <button
-                            className='edit-btn'
-                            onClick={toggleEditInput}
-                        >Edit</button>
+                        {!(props.item.type === 'complete') ?
+                            <button
+                                className='edit-btn'
+                                onClick={toggleEditInput}
+                            >Edit</button>
+                            : null
+                        }
                         <button
                             className='edit-btn'
                             onClick={handleDelete}
                         >Delete</button>
+                        {props.item.type === 'complete' ? 
+                            <button
+                                className='edit-btn'
+                                onClick={handleMakeActive}
+                            >Make Active</button>
+                            : null
+                        }
                     </span>
                 </div>
                 <form className='popup-input' ref={editPanelRef}>
@@ -75,6 +105,8 @@ function ActionItem(props) {
                         value={userInput}
                         onChange={handleChange}
                         className='action-edit'
+                        ref={editBoxRef}
+                        onKeyDown={handlePressEnter}
                         required
                     />
                     <button

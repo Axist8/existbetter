@@ -1,138 +1,125 @@
-import React from 'react'
-import ActionItem from '../ActionItem/ActionItem'
-import todoData from './todoData'
+import React, {useState} from 'react'
 import AddAction from '../AddAction/AddAction'
+import useActiveTab from '../../../hooks/useActiveTab'
+import ActiveTodos from './ActiveTodos'
+import CompletedTodos from './CompletedTodos'
 
-class Todo extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            completedTab: false,
-            newTodo: '',
-            todos: todoData.active,
-            completedTodos: todoData.completed
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSwitch = this.handleSwitch.bind(this)
-    }
-    
-    handleChange(e) {
+function Todo() {
+    const [activeTab, handleSwitch] = useActiveTab()
+    const [newTodo, setNewTodo] = useState('')
+    const [todos, setTodos] = useState([])
+    const [completedTodos, setCompletedTodos] = useState([])
+
+    function handleChange(e) {
         const {value} = e.target
-        this.setState({ newTodo: value })
+        setNewTodo(value)
     }
 
-    handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
-        const active = todoData.active
-        if (active.length >= 100) {
-            alert('Limit of 100 Todos reached')
-            return
-        }
-        const idMap = active.map(todo => todo.id)
-        for (let i = 0; i < 100; i++) {
+        const idMap = todos.map(todo => todo.id)
+        for (let i = 0; i < (todos.length + 1); i++) {
             if (!idMap.includes(i)) {
-                todoData.active.push(
-                    {
-                        id: i, 
-                        userInput: this.state.newTodo,
-                        type: 'checkmark'
-                    }
-                )
+                setTodos(prev => {
+                    return [
+                        ...prev,
+                        {
+                            id: i,
+                            userInput: newTodo,
+                            type: 'checkmark',
+                            active: true
+                        }
+                    ]
+                })
                 break
             }
         }
-        this.setState(prev => {
-            return {
-                ...prev,
-                completedTab: false,
-                newTodo: ''
-            }
-        })
+        if (!activeTab) handleSwitch()
+        setNewTodo('')
     }
 
-    handleClick(e) {
-        const todoId = e.target.id
-        const active = todoData.active
-        for (let i = 0; i < active.length; i++) {
-            const dataId = active[i].id
-            if (parseInt(todoId) === dataId) {
-                const comp = todoData.completed
-                const compIdMap = comp.map(item => item.id)
-                for (let j = 0; j < 200; j++) {
-                    if (comp.length >= 100) {
-                        comp.pop()
-                    }
-                    if (!compIdMap.includes(j)) {
-                        comp.unshift(
-                            {
-                                id: j,
-                                userInput: active[i].userInput,
-                                type: 'complete'
-                            }
-                        )
-                        break
-                    }
-                }
-                active.splice(i, 1)
+    function handleClick(id) {
+        if (completedTodos.length === 50) {
+            const deletedTodo = completedTodos.slice(0, -1)
+            setCompletedTodos(deletedTodo)
+        }
+        const idMap = completedTodos.map(cTodo => cTodo.id)
+        for (let i = 0; i < 50; i++) {
+            if (!idMap.includes(i)) {
+                const completedTodo = todos.find(todo => todo.id === id)
+                setCompletedTodos(prev => [{...completedTodo, id: i, type: 'complete'}, ...prev])
+                break
             }
         }
-        this.setState(prev => prev)
+        const updatedTodos = todos.filter(todo => todo.id !== id)
+        setTodos(updatedTodos)
     }
 
-    handleSwitch() {
-        this.setState({
-            completedTab: !this.state.completedTab
+    function handleEdit(id, edit) {
+        const updatedTodos = todos.map(todo => {
+            if (todo.id === id) todo.userInput = edit
+            return todo
         })
+        setTodos(updatedTodos)
     }
 
-    render() {
-        const allTodos = this.state.todos.map(item => 
-            <ActionItem
-                key={item.id}
-                id={item.id}
-                item={item}
-                handleClick={this.handleClick}
-            />
-        )
-        const completed = this.state.completedTodos.map(item =>
-            <ActionItem
-                key={item.id}
-                id={item.id}
-                item={item}
-            />
-        )
+    function handleDelete(id, complete) {
+        if (complete) {
+            const updatedCompletedTodos = completedTodos.filter(todo => {
+                return todo.id !== id
+            })
+            setCompletedTodos(updatedCompletedTodos)
+        } else {
+            const updatedTodos = todos.filter(todo => {
+                return todo.id !== id
+            })
+            setTodos(updatedTodos)
+        }
+    }
 
-        const actionContent = this.state.completedTab ?
-            completed : allTodos
+    function handleMakeActive(id) {
+        const renewedTodo = completedTodos.find(todo => todo.id === id)
+        const updatedTodos = [{...renewedTodo, type: 'checkmark'}, ...todos]
+        setTodos(updatedTodos)
+        handleDelete(id, true)
+    }
 
-        return (
-            <div className='action-plate'>
-                <div className='action-list-container'>
-                    <div className='active-switch'>
-                        <div className='active-title-container'>
-                            <h4 className='active-title'>
-                                {this.state.completedTab ? 'complete' : 'active'}
-                            </h4>
-                        </div>
-                        <button className='switch' onClick={this.handleSwitch}>
-                            ⇋
-                        </button>
+    return (
+        <div className='action-plate'>
+            <div className='action-list-container'>
+                <div className='active-switch'>
+                    <div className='active-title-container'>
+                        <h4 className='active-title'>
+                            {activeTab ?  'active' : 'complete'} ✧ Todos
+                        </h4>
                     </div>
-                    <div className='action-list'>
-                        {actionContent}
-                    </div>
+                    <button className='switch' onClick={handleSwitch}>
+                        ⇋
+                    </button>
                 </div>
-                <AddAction
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
-                    value={this.state.newTodo}
-                    section='Todo'
-                />
+                {
+                    activeTab ? 
+                        <ActiveTodos
+                            todos={todos}
+                            handleClick={handleClick}
+                            handleEdit={handleEdit}
+                            handleDelete={handleDelete}    
+                        /> 
+                        : 
+                        <CompletedTodos
+                            completedTodos={completedTodos}
+                            handleDelete={handleDelete}
+                            handleMakeActive={handleMakeActive}    
+                        />}
             </div>
-        )
-    }
+            <AddAction
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                value={newTodo}
+                section='Todo'
+            />
+        </div>
+    )
 }
 
 export default Todo

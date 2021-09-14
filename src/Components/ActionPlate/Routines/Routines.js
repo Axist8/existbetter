@@ -45,13 +45,8 @@ function Routines() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log('huh')
-        if (routines.length >= 50) {
-            alert('Limit of 50 Routines reached')
-            return
-        }
         const idMap = routines.map(routine => routine.id)
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < (routines.length + 1); i++) {
             if (!idMap.includes(i)) {
                 setRoutines(currentRoutines => {
                     return [...currentRoutines, {
@@ -64,9 +59,7 @@ function Routines() {
                 break
             }
         }
-        if (!activeTab) {
-            handleSwitch()
-        }
+        if (!activeTab) handleSwitch()
         setNewRoutine('')
     }
 

@@ -1,31 +1,31 @@
 import React, {useState} from 'react'
 import AddAction from '../AddAction/AddAction'
 import useActiveTab from '../../../hooks/useActiveTab'
-import ActiveGoals from './ActiveGoals'
-import CompletedGoals from './CompletedGoals'
+import ActiveItems from './ActiveItems'
+import CompletedItems from './CompletedItems'
 
-function Goals() {
+function CheckMarkList({section}) {
     const [activeTab, handleSwitch] = useActiveTab()
-    const [newGoal, setNewGoal] = useState('')
-    const [goals, setGoals] = useState([])
-    const [completedGoals, setCompletedGoals] = useState([])
+    const [newActiveItem, setNewActiveItem] = useState('')
+    const [activeItems, setActiveItems] = useState([])
+    const [completedItems, setCompletedItems] = useState([])
 
     function handleChange(e) {
         const {value} = e.target
-        setNewGoal(value)
+        setNewActiveItem(value)
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        const idMap = goals.map(goal => goal.id)
-        for (let i = 0; i < (goals.length + 1); i++) {
+        const idMap = activeItems.map(goal => goal.id)
+        for (let i = 0; i < (activeItems.length + 1); i++) {
             if (!idMap.includes(i)) {
-                setGoals(prev => {
+                setActiveItems(prev => {
                     return [
                         ...prev,
                         {
                             id: i,
-                            userInput: newGoal,
+                            userInput: newActiveItem,
                             type: 'checkmark',
                             active: true
                         }
@@ -35,52 +35,52 @@ function Goals() {
             }
         }
         if (!activeTab) handleSwitch()
-        setNewGoal('')
+        setNewActiveItem('')
     }
 
     function handleClick(id) {
-        if (completedGoals.length === 50) {
-            const deletedGoal = completedGoals.slice(0, -1)
-            setCompletedGoals(deletedGoal)
+        if (completedItems.length === 50) {
+            const deletedGoal = completedItems.slice(0, -1)
+            setCompletedItems(deletedGoal)
         }
-        const idMap = completedGoals.map(goal => goal.id)
+        const idMap = completedItems.map(goal => goal.id)
         for (let i = 0; i < 50; i++) {
             if (!idMap.includes(i)) {
-                const completedGoal = goals.find(goal => goal.id === id)
-                setCompletedGoals(prev => [{...completedGoal, id: i, type: 'complete'}, ...prev])
+                const completedGoal = activeItems.find(goal => goal.id === id)
+                setCompletedItems(prev => [{...completedGoal, id: i, type: 'complete'}, ...prev])
                 break
             }
         }
-        const updatedGoals = goals.filter(goal => goal.id !== id)
-        setGoals(updatedGoals)
+        const updatedActiveItems = activeItems.filter(goal => goal.id !== id)
+        setActiveItems(updatedActiveItems)
     }
 
     function handleEdit(id, edit) {
-        const updateGoals = goals.map(goal => {
+        const updatedActiveItems = activeItems.map(goal => {
             if (goal.id === id) goal.userInput = edit
             return goal
         })
-        setGoals(updateGoals)
+        setActiveItems(updatedActiveItems)
     }
 
     function handleDelete(id, complete) {
         if (complete) {
-            const updatedCompletedGoals = completedGoals.filter(goal => {
+            const updatedcompletedItems = completedItems.filter(goal => {
                 return goal.id !== id
             })
-            setCompletedGoals(updatedCompletedGoals)
+            setCompletedItems(updatedcompletedItems)
         } else {
-            const updatedGoals = goals.filter(goal => {
+            const updatedActiveItems = activeItems.filter(goal => {
                 return goal.id !== id
             })
-            setGoals(updatedGoals)
+            setActiveItems(updatedActiveItems)
         }
     }
 
     function handleMakeActive(id) {
-        const renewedGoal = completedGoals.find(goal => goal.id === id)
-        const updatedGoals = [{...renewedGoal, type: 'checkmark'}, ...goals]
-        setGoals(updatedGoals)
+        const renewedGoal = completedItems.find(goal => goal.id === id)
+        const updatedActiveItems = [{...renewedGoal, type: 'checkmark'}, ...activeItems]
+        setActiveItems(updatedActiveItems)
         handleDelete(id, true)
     }
 
@@ -90,7 +90,7 @@ function Goals() {
                 <div className='active-switch'>
                     <div className='active-title-container'>
                         <h4 className='active-title'>
-                            {activeTab ?  'active' : 'complete'} ✧ Goals
+                            {activeTab ?  'active' : 'complete'} ✧ {section}s
                         </h4>
                     </div>
                     <button className='switch' onClick={handleSwitch}>
@@ -99,15 +99,15 @@ function Goals() {
                 </div>
                 {
                     activeTab ? 
-                        <ActiveGoals
-                            goals={goals}
+                        <ActiveItems
+                            activeItems={activeItems}
                             handleClick={handleClick}
                             handleEdit={handleEdit}
                             handleDelete={handleDelete}    
                         /> 
                         : 
-                        <CompletedGoals
-                            completedGoals={completedGoals}
+                        <CompletedItems
+                            completedItems={completedItems}
                             handleDelete={handleDelete}
                             handleMakeActive={handleMakeActive}
                         />}
@@ -115,11 +115,11 @@ function Goals() {
             <AddAction
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
-                value={newGoal}
-                section='Goal'
+                value={newActiveItem}
+                section={section}
             />
         </div>
     )
 }
 
-export default Goals
+export default CheckMarkList

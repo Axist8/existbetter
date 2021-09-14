@@ -23,6 +23,10 @@
     margin-left: 4px;
 }
 
+.edit-btn:hover {
+    cursor: pointer;
+}
+
 .action-controls {
     display: flex;
     justify-content: flex-end;
@@ -60,6 +64,7 @@
     top: 0;
     left: 0;
     margin: 0 0 0 2px;
+    width: 250px;
 }
 
 .popup-input {
